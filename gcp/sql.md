@@ -48,7 +48,7 @@ Patching Cloud SQL instance...done.
 Updated [https://www.googleapis.com/sql/v1beta4/projects/test-1234/instances/main-4321].
 ```
 
-## Connect localy to cloudsql
+## Connect locally to cloudsql
 ### Using cloud-sql-proxy
 
 Get instance name
