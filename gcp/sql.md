@@ -33,11 +33,11 @@ ft_min_word_len                  INTEGER                MYSQL_5_5,MYSQL_5_6,MYSQ
 ...
 ```
 
-Set a new value
+Set new values, unfortunately `--database-flags` param is reset all previously defined flags.
 ```
-❯ gcloud sql instances patch $INSTANCE --database-flags=long_query_time=1
+❯ gcloud sql instances patch $INSTANCE --database-flags=long_query_time=1,log_output=FILE,long_query_time=1,log_queries_not_using_indexes=off,innodb_print_all_deadlocks=on,slow_query_log=on
 The following message will be used for the patch API method.
-{"project": "test-1234", "name": "main-4321", "settings": {"databaseFlags": [{"name": "long_query_time", "value": "1"}]}}
+{"project": "test-1234", "name": "main-4321", "settings": {"databaseFlags": [{"name": "innodb_print_all_deadlocks", "value": "on"}, {"name": "log_output", "value": "FILE"}, {"name": "log_queries_not_using_indexes", "value": "off"}, {"name": "long_query_time", "value": "1"}, {"name": "slow_query_log", "value": "on"}]}}
 WARNING: This patch modifies a value that requires your instance to be
  restarted. Submitting this patch will immediately restart your
 instance if it's running.
