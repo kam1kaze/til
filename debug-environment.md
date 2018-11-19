@@ -8,6 +8,7 @@ packages=(
   util-linux-bash-completion
   pv
   netcat-openbsd
+  htop
   atop
   tcpdump
   nmap
@@ -18,6 +19,8 @@ packages=(
   strace
   procps
   lsof
+  less
+  curl
 )
 docker run \
   --rm \
