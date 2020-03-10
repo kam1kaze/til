@@ -4,7 +4,8 @@
 Find OOMkilled pods
 ```
 kubectl get pods --all-namespaces -o json \
-  | jq -c '.items[] | select(.status.containerStatuses[].lastState.terminated.reason=="OOMKilled") | [.metadata.name, (.status.containerStatuses[].lastState.terminated | select(.reason=="OOMKilled") | .finishedAt)]'
+  | jq -c '.items[] | select(.status.containerStatuses[].lastState.terminated.reason=="OOMKilled") | [(.status.containerStatuses[].lastState.terminated | select(.reason=="OOMKilled") | .finishedAt), .metadata.name]' \
+  | sort
 ```
 
 Find the node name where OOM occurs 
