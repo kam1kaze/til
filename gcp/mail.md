@@ -7,11 +7,14 @@ apk --update add heirloom-mailx
 
 Sending email:
 ```
-echo "Body message" | mailx -S smtp=smtp-relay.gmail.com:587 \
+MAIL_FROM=from.mail@domain.com
+MAIL_TO=to.mail@domain.com
+MAIL_RELAY=smtp-relay.gmail.com:587
+echo "Body message" | mailx -S smtp=$MAIL_RELAY \
   -s "Test subject 1" \
   -v \
-  -r from.mail@domain.com \
-  to.mail@domain.com
+  -r $MAIL_FROM \
+  $MAIL_TO
 ```
 
 Output
