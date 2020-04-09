@@ -2,7 +2,13 @@
 
 Install cli mail client
 ```
-kubectl run -i --tty test --image=alpine --generator=run-pod/v1 --restart=Never --rm -- sh -c 'apk --update add heirloom-mailx bash; exec bash'
+kubectl run test \
+  -i \
+  --tty \
+  --image=alpine \
+  --restart=Never \
+  --rm \
+  -- sh -c 'apk --update add heirloom-mailx bash; exec bash'
 ```
 
 Sending email:
