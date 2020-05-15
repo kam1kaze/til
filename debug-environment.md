@@ -21,6 +21,7 @@ packages=(
   lsof
   less
   curl
+  conntrack-tools
 )
 docker run \
   --rm \
