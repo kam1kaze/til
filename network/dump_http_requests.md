@@ -6,12 +6,35 @@ where
  * `-c 10000` exit after receiving 10K packets
  * `-s0` snap length, is the size of the packet to capture. `-s0` will set the size to unlimited - use this if you want to capture all the traffic. Needed if you want to pull binaries / files from network traffic
  * `port 3700` capturing filter
+ 
+## Wireshark UI kubernetes
+
+Install necessary components:
+```
+brew install krew
+kubectl krew install sniff
+brew cask install wireshark
+```
+
+run:
+```
+kubectl sniff -p -f "tcp port 3700" api-66bd9cbf4d-dsdg6
+```
 
 ## CLI tshark
 
 Run docker with the latest tshark version:
 ```
-docker run -w /root -v /root:/root -v /var/run/docker.sock:/var/run/docker.sock --rm -ti --pid host --net host alpine:edge sh -c 'apk add --update --no-cache bash netcat-openbsd atop tcpdump nmap bind-tools docker tshark && TERM=screen exec bash'
+docker run \
+  -w /root \
+  -v /root:/root \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --rm \
+  -ti \
+  --pid host \
+  --net host \
+  alpine:edge \
+  sh -c 'apk add --update --no-cache bash netcat-openbsd atop tcpdump nmap bind-tools docker tshark && TERM=screen exec bash'
 ```
 
 ### Get HTTP requests and responses for certain TCP session (steam) including headers and body
