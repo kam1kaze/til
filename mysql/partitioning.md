@@ -1,5 +1,7 @@
-We need to add/modify partitions for a `records` table. 
-Based on https://mariadb.com/resources/blog/automatic-partition-maintenance-in-mariadb/
+How to automate partition management  https://mariadb.com/resources/blog/automatic-partition-maintenance-in-mariadb/
+MySQL partitioning explanation: http://mysql.rjweb.org/doc.php/partitionmaint
+
+### We need to add/modify partitions for a `records` table.
 
 Create new table and add remove old partitions if exists
 ``` 
