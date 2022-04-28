@@ -2,14 +2,20 @@ http://pezz.tkwcy.ee/mikrotik.txt
 
 ## Install password-less access via SSH
 ```
-HOST=192.168.88.1
+HOST="admin@192.168.88.1"
 
 # Get necessary pub key and upload it to the router
 pub_auth=$(ssh-add -l | awk '{print $3 ".pub";exit}')
-lftp -u admin $HOST -e "put $pub_auth; ls; exit"
+scp $pub_auth $HOST:key.pub
 
 # Install such key
-ssh admin@${HOST} "/user ssh-keys import public-key-file=${pub_auth##*/}; /user ssh-keys print"
+ssh admin@${HOST} "/user ssh-keys import public-key-file=key.pub; /user ssh-keys print"
+```
+
+Please note that password loging will be disabled automatically. If you need it, just execure the following command:
+
+```
+/ip ssh set always-allow-password-login=yes
 ```
 
 ## Software upgrade
