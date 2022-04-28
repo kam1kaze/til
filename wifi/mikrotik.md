@@ -1,6 +1,10 @@
 http://pezz.tkwcy.ee/mikrotik.txt
 
-## Install password-less access via SSH
+## Configure SSH
+
+:warning: Test the connectivity before closing ssh session!
+
+### Install password-less access via SSH
 ```
 HOST="admin@192.168.88.1"
 
@@ -16,6 +20,20 @@ Please note that password loging will be disabled automatically. If you need it,
 
 ```
 /ip ssh set always-allow-password-login=yes
+```
+
+### Change port
+
+```
+#  Add firewall rule to access the board from WAN
+/ip firewall filter add chain=input protocol=tcp dst-port=65321 action=accept comment="Allow SSH"
+/ip firewall filter print
+
+#  Find rule number and move it upper
+/ip firewall filter move numbers=FROM destination=TO
+
+# Change port
+/ip service set ssh port=65321
 ```
 
 ## Software upgrade
