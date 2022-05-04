@@ -22,6 +22,12 @@ Please note that password loging will be disabled automatically. If you need it,
 /ip ssh set always-allow-password-login=yes
 ```
 
+If you are going to use miktorik as ssh jumphost (`ssh -J gw_host internal_host`), port-forwarding must be enabled:
+
+```
+/ip ssh set forwarding-enabled=both
+```
+
 ### Change port
 
 ```
